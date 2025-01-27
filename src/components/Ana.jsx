@@ -88,7 +88,7 @@ function Ana() {
 
   const fetchUserDetails = async (token) => {
     try {
-      const response = await fetch("http://localhost:3000/api/user/details", {
+      const response = await fetch("https://short-url-back-48bn.onrender.com/api/user/details", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -120,7 +120,7 @@ function Ana() {
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/url?email=${email}&pageType=${pageType}&page=${page}&limit=${limit}&search=${searchTerm}`,
+        `https://short-url-back-48bn.onrender.com/api/url?email=${email}&pageType=${pageType}&page=${page}&limit=${limit}&search=${searchTerm}`,
         {
           method: "GET",
         }

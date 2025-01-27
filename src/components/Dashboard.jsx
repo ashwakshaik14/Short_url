@@ -1,196 +1,3 @@
-// import { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import logo from "../assets/C.png";
-// import style from "../style/Dashboard.module.css";
-// import { FaRegEnvelopeOpen } from "react-icons/fa";
-// import { LuLink } from "react-icons/lu";
-// import { HiMiniArrowTrendingUp } from "react-icons/hi2";
-// import { IoSettingsOutline } from "react-icons/io5";
-// import { FiPlus } from "react-icons/fi";
-// import { CiSearch } from "react-icons/ci";
-// import Modal from "./Modal";
-
-// function Dashboard() {
-//   const [userData, setUserData] = useState(null);
-//   const [bgColor, setBgColor] = useState("#adb5bd");
-//   const [activeMenu, setActiveMenu] = useState("Dashboard");
-//   const [clicks, setClicks] = useState(0);
-//   const [isModalVisible, setIsModalVisible] = useState(false);
-//   const [showPopup, setShowPopup] = useState(false); // State for popup visibility
-
-//   const handleLogout = () => {
-//     localStorage.removeItem("token"); // Remove user token
-//     navigate("/login"); // Redirect to login page
-//   };
-
-//   const navigate = useNavigate();
-
-//   // Function to fetch user details
-//   const fetchUserDetails = async (token) => {
-//     try {
-//       const response = await fetch("http://localhost:3000/api/user/details", {
-//         method: "GET",
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-
-//       if (response.ok) {
-//         const data = await response.json();
-//         setUserData(data);
-
-//         // Store the email in localStorage
-//         localStorage.setItem("email", data.email);
-//       } else {
-//         throw new Error("Failed to fetch user details");
-//       }
-//     } catch (error) {
-//       console.error(error.message);
-//     }
-//   };
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-//     if (!token) {
-//       alert("You are not logged in!");
-//       navigate("/login");
-//     } else {
-//       fetchUserDetails(token); // Call the function here
-//     }
-//   }, [navigate]);
-
-//   useEffect(() => {
-//     if (userData) {
-//       setBgColor(generateColorFromString(userData.name));
-//     }
-//   }, [userData]);
-
-//   const generateColorFromString = (str) => {
-//     let hash = 0;
-//     for (let i = 0; i < str.length; i++) {
-//       hash = str.charCodeAt(i) + ((hash << 5) - hash);
-//     }
-//     return `hsl(${hash % 360}, 70%, 80%)`;
-//   };
-
-//   const closeModal = () => setIsModalVisible(false);
-
-//   if (!userData) return <p>Loading...</p>;
-
-//   return (
-//     <>
-//       <div className={style.container}>
-//         {/* Sidebar */}
-//         <nav className={style.sidebar}>
-//           <div className={style.burger} id="burger">
-//             &#9776;
-//           </div>
-//           <img src={logo} alt="logo" className={style.logo} />
-//           <div className={style.menuItems}>
-//             {["Dashboard", "Links", "Analytics", "Settings"].map(
-//               (menu, index) => (
-//                 <div key={menu}>
-//                   <button
-//                     className={`${style.sidebarButton} ${
-//                       activeMenu === menu ? style.active : ""
-//                     }`}
-//                     onClick={() => {
-//                       setActiveMenu(menu);
-//                       navigate(`/${menu.toLowerCase()}`);
-//                     }}
-//                   >
-//                     {menu === "Dashboard" && <FaRegEnvelopeOpen />}
-//                     {menu === "Links" && <LuLink />}
-//                     {menu === "Analytics" && <HiMiniArrowTrendingUp />}
-//                     {menu === "Settings" && <IoSettingsOutline />}
-//                     &nbsp; {menu}
-//                   </button>
-//                   {menu === "Analytics" && <hr className={style.divider} />}
-//                 </div>
-//               )
-//             )}
-//           </div>
-//         </nav>
-
-//         {/* Navbar */}
-//         <div className={style.navbar}>
-//           <div className={style.navTitle}>Good morning, {userData.name}</div>
-//           <div className={style.userInfo}>
-//             <div className={style.bands}>
-//               <button
-//                 className={style.createNewButton}
-//                 onClick={() => setIsModalVisible(true)}
-//               >
-//                 <FiPlus />
-//                 &nbsp;Create New
-//               </button>
-//               <div className={style.searchContainer}>
-//                 <CiSearch className={style.searchIcon} />
-//                 <input
-//                   type="search"
-//                   placeholder="Search by remarks"
-//                   className={style.searchInput}
-//                 />
-//               </div>
-//             </div>
-//             {/* <div
-//               className={style.userAvatar}
-//               style={{ backgroundColor: bgColor }}
-//             >
-//               {userData.name.includes(" ")
-//                 ? userData.name
-//                     .split(" ")
-//                     .map((word, index, arr) =>
-//                       index === 0 || index === arr.length - 1
-//                         ? word.charAt(0).toUpperCase()
-//                         : ""
-//                     )
-//                     .join("")
-//                 : userData.name.charAt(0).toUpperCase() +
-//                   userData.name.charAt(0).toUpperCase()}
-//             </div> */}
-//             <div
-//               className={style.userAvatar}
-//               style={{ backgroundColor: bgColor, position: "relative" }}
-//               onClick={() => setShowPopup(!showPopup)} // Toggle popup
-//             >
-//               {userData.name
-//                 .split(" ")
-//                 .map((word, index) =>
-//                   index === 0 || index === userData.name.split(" ").length - 1
-//                     ? word.charAt(0).toUpperCase()
-//                     : ""
-//                 )
-//                 .join("")}
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Main Content */}
-//         <div className={style.main}>
-//           <h1>Total Clicks &nbsp; {clicks}</h1>
-//           <div className={style.cardsContainer}>
-//             <div className={style.card}>
-//               <h3 className={style.cardTitle}>Date-wise Clicks</h3>
-//             </div>
-//             <div className={style.card}>
-//               <h3 className={style.cardTitle}>Click Devices</h3>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Modal */}
-//       {isModalVisible && (
-//         <Modal closeModal={closeModal} email={userData.email} />
-//       )}
-//       {showPopup && (
-//         <div className={style.popup}>
-//           <button onClick={handleLogout}>Logout</button>
-//         </div>
-//       )}
-//     </>
-//   );
-// }
-
 // export default Dashboard;
 
 import { useState, useEffect } from "react";
@@ -315,7 +122,7 @@ function Dashboard() {
 
   const fetchUserDetails = async (token) => {
     try {
-      const response = await fetch("http://localhost:3000/api/user/details", {
+      const response = await fetch("https://short-url-back-48bn.onrender.com/api/user/details", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -337,7 +144,7 @@ function Dashboard() {
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/url?email=${email}&page=${page}&limit=${limit}&search=${searchTerm}`,
+        `https://short-url-back-48bn.onrender.com/api/url?email=${email}&page=${page}&limit=${limit}&search=${searchTerm}`,
         {
           method: "GET",
         }
@@ -351,28 +158,10 @@ function Dashboard() {
     }
   };
 
-  // const fetchClicksData = async (email) => {
-  //   try {
-  //     const response = await fetch(`http://localhost:3000/api/url/clicks?email=${email}`, {
-  //       method: "GET",
-  //     });
-  //     console.log(response);
-  //     if (!response.ok) throw new Error("Error fetching clicks data");
-
-  //     const data = await response.json();
-  //     setClicks(data.totalClicks); // Set total clicks
-  //     setDateWiseClicks(data.dateWiseClicks); // Set date-wise clicks
-  //     setDeviceWiseClicks(data.deviceWiseClicks); // Set device-wise clicks
-  //     console.log("Device Wise Clicks:", data.deviceWiseClicks); // Check if this is undefined
-
-  //   } catch (error) {
-  //     console.error("Error fetching clicks data:", error);
-  //   }
-  // };
   const fetchClicksData = async (email) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/url/clicks?email=${email}`,
+        `https://short-url-back-48bn.onrender.com/api/url/clicks?email=${email}`,
         {
           method: "GET",
         }
@@ -438,36 +227,6 @@ function Dashboard() {
   return (
     <>
       <div className={style.container}>
-        {/* Sidebar */}
-        {/* <nav className={style.sidebar}>
-          <div className={style.burger} id="burger">
-            &#9776;
-          </div>
-          <img src={logo} alt="logo" className={style.logo} />
-          <div className={style.menuItems}>
-            {["Dashboard", "Links", "Analytics", "Settings"].map((menu) => (
-              <div key={menu}>
-                <button
-                  className={`${style.sidebarButton} ${
-                    activeMenu === menu ? style.active : ""
-                  }`}
-                  onClick={() => {
-                    setActiveMenu(menu);
-                    navigate(`/${menu.toLowerCase()}`);
-                  }}
-                >
-                  {menu === "Dashboard" && <FaRegEnvelopeOpen />}
-                  {menu === "Links" && <LuLink />}
-                  {menu === "Analytics" && <HiMiniArrowTrendingUp />}
-                  {menu === "Settings" && <IoSettingsOutline />}
-                  &nbsp; {menu}
-                </button>
-                {menu === "Analytics" && <hr className={style.divider} />}
-              </div>
-            ))}
-          </div>
-        </nav> */}
-
         <nav className={style.sidebar}>
           <img src={logo} alt="logo" className={style.logo} />
           <div className={style.menuItems}>
@@ -549,13 +308,7 @@ function Dashboard() {
             <div className={style.graph}>
               <div className={style.card}>
                 <h3 className={style.cardTitle}>Date-wise Clicks</h3>
-                {/* <ul>
-                        {dateWiseClicks.map((item, index) => (
-                          <li key={index}>
-                            <strong>{item.date}:</strong> {item.cumulativeClicksForDay}
-                          </li>
-                        ))}
-                      </ul> */}
+
                 <Bar
                   data={dateChartData}
                   options={{
@@ -573,13 +326,7 @@ function Dashboard() {
               {/* Device-wise Clicks */}
               <div className={style.card}>
                 <h3 className={style.cardTitle}>Device-wise Clicks</h3>
-                {/* <ul>
-                      {deviceWiseClicks.map((item, index) => (
-                        <li key={index}>
-                          <strong>{item.device}:</strong> {item.clicks}
-                        </li>
-                      ))}
-                    </ul> */}
+
                 <Bar
                   data={deviceChartData}
                   options={{

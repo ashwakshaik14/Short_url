@@ -9,47 +9,6 @@ export default function Modal1({ closeModal, linkData, onSave }) {
   const [useExpiration, setUseExpiration] = useState(!!linkData.expirationDate);
   const [loading, setLoading] = useState(false);
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault(); // Prevent form navigation
-//     setLoading(true);
-  
-//     const updatedData = {
-//       originalUrl: url,
-//       remarks,
-//       expirationDate: useExpiration ? expirationDate : null,
-//     };
-  
-//     try {
-//       const response = await fetch(`http://localhost:3000/api/url/${linkData._id}`, {
-//         method: "PUT",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(updatedData),
-//       });
-  
-//       if (!response.ok) {
-//         const errorData = await response.json();
-//         console.error("Error updating URL:", errorData.error);
-//         alert(`Error: ${errorData.error}`);
-//         return;
-//       }
-  
-//       const data = await response.json();
-//       console.log("Updated URL:", data);
-  
-//       alert("URL updated successfully!");
-//       onSave(); // Refresh table data
-//       closeModal(); // Close the modal
-//     } catch (error) {
-//       console.error("Error updating URL:", error);
-//       alert("Failed to update the URL.");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-
 const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -61,7 +20,7 @@ const handleSubmit = async (e) => {
     };
   
     try {
-      const response = await fetch(`http://localhost:3000/api/url/${linkData._id}`, {
+      const response = await fetch(`https://short-url-back-48bn.onrender.com/api/url/${linkData._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

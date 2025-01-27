@@ -103,7 +103,7 @@ function Lin() {
 
   const fetchUserDetails = async (token) => {
     try {
-      const response = await fetch("http://localhost:3000/api/user/details", {
+      const response = await fetch("https://short-url-back-48bn.onrender.com/api/user/details", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -135,7 +135,7 @@ function Lin() {
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/url?email=${email}&pageType=${pageType}&page=${page}&limit=${limit}&search=${searchTerm}`,
+        `https://short-url-back-48bn.onrender.com/api/url?email=${email}&pageType=${pageType}&page=${page}&limit=${limit}&search=${searchTerm}`,
         {
           method: "GET",
         }
@@ -231,7 +231,7 @@ function Lin() {
   // Function to handle the deletion
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/url/${id}`, {
+      const response = await fetch(`https://short-url-back-48bn.onrender.com/api/url/${id}`, {
         method: "DELETE",
       });
 

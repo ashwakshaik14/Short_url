@@ -48,7 +48,7 @@ function Settings() {
     const fetchUserDetails = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3000/api/user/details", {
+        const response = await fetch("https://short-url-back-48bn.onrender.com/api/user/details", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -81,7 +81,7 @@ function Settings() {
   const handleSaveChanges = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3000/api/user/update", {
+      const response = await fetch("https://short-url-back-48bn.onrender.com/api/user/update", {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -108,7 +108,7 @@ function Settings() {
     if (window.confirm("Are you sure you want to delete your account?")) {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3000/api/user/delete", {
+        const response = await fetch("https://short-url-back-48bn.onrender.com/api/user/delete", {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -156,7 +156,7 @@ function Settings() {
 
   const fetchUserDetails = async (token) => {
     try {
-      const response = await fetch("http://localhost:3000/api/user/details", {
+      const response = await fetch("https://short-url-back-48bn.onrender.com/api/user/details", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });

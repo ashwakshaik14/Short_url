@@ -28,7 +28,7 @@ export default function Modal({ closeModal }) {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/url/shorten", {
+      const response = await fetch("https://short-url-back-48bn.onrender.com/api/url/shorten", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
