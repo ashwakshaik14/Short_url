@@ -164,7 +164,7 @@ function Dashboard() {
   const fetchClicksData = async (email) => {
     try {
       const response = await fetch(
-        `https://short-url-back-48bn.onrender.com/api/url/clicks?email=${email}`,
+        `https://short-url-back-48bn.onrender.com/api/dash/clicks?email=${email}`,
         {
           method: "GET",
         }
