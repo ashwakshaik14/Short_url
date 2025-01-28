@@ -154,14 +154,14 @@ function Dashboard() {
       const data = await response.json();
       setLinks(data.data);
     } catch (error) {
-      console.error("Error fetching URLs:", error);
+      console.error("Error fetching URs:", error);
     }
   };
 
   const fetchClicksData = async (email) => {
     try {
       const response = await fetch(
-        `https://short-url-back-48bn.onrender.com/api/url/clicks?email=${email}`,
+        `https://short-url-back-48bn.onrender.com/api/dash/clicks?email=${email}`,
         {
           method: "GET",
         }
