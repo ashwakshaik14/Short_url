@@ -380,7 +380,7 @@ function Dashboard() {
   useEffect(() => {
     const dateLabels = dateWiseClicks.map((item) => item.date);
     const dateClicks = dateWiseClicks.map(
-      (item) => item.cumulativeClicksForDay
+      (item) => item.clicks
     );
 
     setDateChartData({
