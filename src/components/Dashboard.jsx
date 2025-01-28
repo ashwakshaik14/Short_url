@@ -172,7 +172,7 @@ function Dashboard() {
 
       // Read the response body as text first, for logging
       const rawResponseBody = await response.text();
-      console.log("Raw Response Body:", rawResponseBody);
+      console.log("Raw Response Bod:", rawResponseBody);
 
       if (!response.ok) throw new Error("Error fetching clicks data");
 
