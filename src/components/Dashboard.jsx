@@ -507,29 +507,31 @@ function Dashboard() {
           method: "GET",
         }
       );
-
+  
       // Read the response body as text first, for logging
       const rawResponseBody = await response.text();
       console.log("Raw Response Bod:", rawResponseBody);
-
+  
       if (!response.ok) throw new Error("Error fetching clicks data");
-
+  
       // Parse the raw response body into JSON
       const data = JSON.parse(rawResponseBody); // Use JSON.parse to avoid consuming the stream twice
-
+  
       console.log("Parsed Data:", data); // Check if data is being parsed correctly
-
-      setClicks(data.totalClicks); // Set total clicks
-      setDateWiseClicks(data.dailyClicks); // Set date-wise clicks
-      setDeviceWiseClicks(data.totalDeviceClicks); // Correctly set device-wise clicks
-
-      console.log("Device Wise Clicks:", data.totalDeviceClicks); // This should now log the correct data
-      console.log("date wise clicks", data.dailyClicks);
+  
+      // Use correct keys based on the response structure
+      setClicks(data.totalClicks || 0);
+      setDateWiseClicks(data.dateWiseClicks || []); // Use 'dateWiseClicks'
+      setDeviceWiseClicks(data.deviceWiseClicks || []); // Use 'deviceWiseClicks'
+  
+      console.log("Total Clicks:", data.totalClicks);
+      console.log("Device Wise Clicks:", data.deviceWiseClicks); // Log the correct data
+      console.log("Date Wise Clicks:", data.dateWiseClicks); // Log the correct data
     } catch (error) {
       console.error("Error fetching clicks data:", error);
     }
   };
-
+  
 
   useEffect(() => {
     if (userData) {
