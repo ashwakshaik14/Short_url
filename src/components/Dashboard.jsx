@@ -52,8 +52,12 @@ function Dashboard() {
   const [deviceChartData, setDeviceChartData] = useState({});
 
   useEffect(() => {
+
+    const sortedDateWiseClicks = [...dateWiseClicks].reverse(); // Reverse the order
+
+
     const dateLabels = dateWiseClicks.map((item) => item.date);
-    const cumulativeClicks = dateWiseClicks.map((item) => item.cumulativeClicks);
+    const cumulativeClicks = sortedDateWiseClicks.map((item) => item.cumulativeClicks);
 
     // const dateClicks = dateWiseClicks.map(
     //   (item) => item.clicks
