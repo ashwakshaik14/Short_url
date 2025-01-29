@@ -53,16 +53,18 @@ function Dashboard() {
 
   useEffect(() => {
     const dateLabels = dateWiseClicks.map((item) => item.date);
-    const dateClicks = dateWiseClicks.map(
-      (item) => item.clicks
-    );
+    const cumulativeClicks = dateWiseClicks.map((item) => item.cumulativeClicks);
+
+    // const dateClicks = dateWiseClicks.map(
+    //   (item) => item.clicks
+    // );
 
     setDateChartData({
       labels: dateLabels,
       datasets: [
         {
           label: "Clicks",
-          data: dateClicks,
+          data: cumulativeClicks,
           backgroundColor: "#1B48DA",
           borderColor: "rgba(54, 162, 235, 1)",
           borderWidth: 1,
