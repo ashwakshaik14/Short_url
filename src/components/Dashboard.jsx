@@ -56,7 +56,7 @@ function Dashboard() {
     const sortedDateWiseClicks = [...dateWiseClicks].reverse(); // Reverse the order
 
 
-    const dateLabels = dateWiseClicks.map((item) => item.date);
+    const dateLabels = sortedDateWiseClicks.map((item) => item.date);
     const cumulativeClicks = sortedDateWiseClicks.map((item) => item.cumulativeClicks);
 
     // const dateClicks = dateWiseClicks.map(
