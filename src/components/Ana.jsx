@@ -261,50 +261,34 @@ function Ana() {
           </div>
 
           <div className={style.linksContainer}>
-            <table style={{ width: "100%", textAlign: "left" }}>
-              <thead>
-                <tr>
-                  <th onClick={() => sortData("createdAt")}>TimeStamp</th>
-                  <th>Original Link</th>
-                  <th style={{ width: "20%" }}>Short Link</th>
-                  <th>ip address</th>
-                  <th>User Device</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredLinks.map((link) => (
-
-                      <tr key={link._id}>
-                        {/* Timestamp */}
-                        <td>{formatDate(link.timestamp)}</td>
-
-                        {/* Original Link */}
-                        <td>
-                          <a
-                            href={link.originalUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {link.originalUrl}
-                          </a>
-                        </td>
-
-                        {/* Short Link */}
-                        <td>
-                          <a>{link.shortUrl}</a>
-                        </td>
-
-                        {/* IP Address */}
-                        <td>{link.ip}</td>
-
-                        {/* Device */}
-                        <td>{link.device || "Unknown Device"}</td>
-                      </tr>
-                ))}
-              </tbody>
-            </table>
-
-            {/* Pagination */}
+          <div className={style.tableWrapper}>
+    <table className={style.table}>
+      <thead>
+        <tr>
+          <th onClick={() => sortData("createdAt")}>TimeStamp</th>
+          <th>Original Link</th>
+          <th style={{ width: "20%" }}>Short Link</th>
+          <th>IP Address</th>
+          <th>User Device</th>
+        </tr>
+      </thead>
+      <tbody>
+        {filteredLinks.map((link) => (
+          <tr key={link._id}>
+            <td>{formatDate(link.timestamp)}</td>
+            <td>
+              <a href={link.originalUrl} target="_blank" rel="noopener noreferrer">
+                {link.originalUrl}
+              </a>
+            </td>
+            <td><a>{link.shortUrl}</a></td>
+            <td>{link.ip}</td>
+            <td>{link.device || "Unknown Device"}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>            {/* Pagination */}
             <div className={style.paginationContainer}>
               <button
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
