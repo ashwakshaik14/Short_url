@@ -632,38 +632,55 @@ table{
 }
 
 
-/* Ensure the table wrapper is scrollable */
+
+
+
+
+
+/* Wrapper to make table scrollable */
 .tableWrapper {
-  width: 100%; /* Ensures the wrapper takes full width */
+  width: 100%; /* Ensures it spans full width */
   overflow-x: auto; /* Enables horizontal scrolling */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+  border: 1px solid #ddd; /* Optional: for better visibility */
 }
 
-/* Fix the table layout */
+/* Prevents table from shrinking */
 table {
   width: 100%; /* Ensures it maintains full width */
+  min-width: 800px; /* Prevents table from becoming too small */
   border-collapse: collapse;
-  table-layout: auto; /* Prevents table from shrinking */
-  min-width: 800px; /* Ensures table does not shrink below a certain width */
 }
 
-/* Ensures cells have proper padding */
+/* Ensures cells have proper spacing */
 th, td {
   padding: 10px;
-  white-space: nowrap; /* Prevents text from wrapping inside cells */
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Custom scrollbar styling (optional) */
+.tableWrapper::-webkit-scrollbar {
+  height: 8px; /* Adjust scrollbar height */
+}
+
+.tableWrapper::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of scrollbar */
+  border-radius: 4px; /* Rounded edges */
+}
+
+.tableWrapper::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of scrollbar */
 }
 
 /* Mobile-specific styles */
 @media (max-width: 768px) {
   .tableWrapper {
-    overflow-x: auto; /* Enables horizontal scrolling */
     width: 100%;
+    overflow-x: auto;
   }
 
   table {
-    min-width: 800px; /* Set minimum width for table to maintain structure */
+    min-width: 800px; /* Ensures the table does not shrink too much */
   }
 }
-
-
 

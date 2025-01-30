@@ -325,61 +325,53 @@ function Lin() {
           </div>
 
           <div className={style.linksContainer}>
-            <table style={{ width: "100%", textAlign: "left" }} className={style.tableWrapper}>
-              <thead>
-                <tr>
-                  <th onClick={() => sortData("createdAt")}>Date</th>
-                  <th>Original Link</th>
-                  <th style={{width:"20%"}}>Short Link</th>
-                  <th>Remarks</th>
-                  <th style={{width:"8%"}}>Clicks</th>
-                  <th onClick={() => sortData("status")} style={{width:"8%"}}>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
+          <div className={style.tableWrapper}>
+  <table className={style.table}>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Original Link</th>
+        <th>Short Link</th>
+        <th>Remarks</th>
+        <th>Clicks</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {filteredLinks.map((link) => (
+        <tr key={link._id}>
+          <td>{formatDate(link.createdAt)}</td>
+          <td>
+            <a href={link.originalUrl} target="_blank" rel="noopener noreferrer">
+              {link.originalUrl}
+            </a>
+          </td>
+          <td>
+            <button onClick={() => handleCopy(link.shortUrl)}>
+              <IoCopyOutline />
+            </button>
+            <a>{link.shortUrl}</a>
+          </td>
+          <td>{link.remarks || "N/A"}</td>
+          <td>{link.clicks || 0}</td>
+          <td style={{ color: getStatus(link.expirationDate).color }}>
+            {getStatus(link.expirationDate).status}
+          </td>
+          <td>
+            <button onClick={() => handleEdit(link)}>
+              <FaPen />
+            </button>
+            <button onClick={() => handleOpenModal(link)}>
+              <RiDeleteBin6Line />
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
 
-              <tbody>
-                {filteredLinks.map((link) => (
-                  <tr key={link._id}>
-                    <td>{formatDate(link.createdAt)}</td>
-                    <td>
-                      <a
-                        href={link.originalUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {link.originalUrl}
-                      </a>
-                    </td>
-                    <td>
-                    <button
-                        onClick={() => handleCopy(link.shortUrl)}
-                        disabled={
-                          getStatus(link.expirationDate).status === "Inactive"
-                        } 
-                      >
-                      <IoCopyOutline />
-                      </button>
-                      <a>{link.shortUrl}</a>
-
-                    </td>
-                    <td>{link.remarks || "N/A"}</td>
-                    <td>{link.clicks || 0}</td>
-                    <td style={{ color: getStatus(link.expirationDate).color }}>
-                      {getStatus(link.expirationDate).status}
-                    </td>
-                    <td className={style.ED}>
-                      <button onClick={() => handleEdit(link)}>
-                        <FaPen />
-                      </button>
-                      <button onClick={() => handleOpenModal(link)}>
-                        <RiDeleteBin6Line />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
 
             {/* Pagination */}
             <div className={style.paginationContainer}>
