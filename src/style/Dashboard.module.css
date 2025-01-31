@@ -684,7 +684,3 @@ th, td {
   display: flex;
   justify-content: space-around;
 }
-
-.edit button{
-  background-color: none;
-}
