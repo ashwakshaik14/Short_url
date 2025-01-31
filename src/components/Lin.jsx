@@ -326,7 +326,7 @@ function Lin() {
 
           <div className={style.linksContainer}>
           <div className={style.tableWrapper}>
-  <table className={style.table}>
+  <table className={style.table} style={{border:'none',borderRadius:'8px'}}>
   <thead>
   <tr>
     <th onClick={() => sortData("createdAt")} style={{ cursor: "pointer" }}>
