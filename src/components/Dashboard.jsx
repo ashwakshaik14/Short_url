@@ -160,24 +160,6 @@ function Dashboard() {
     }
   };
 
-  // const fetchClicksData = async (email) => {
-  //   try {
-  //     const response = await fetch(
-  //       `https://short-url-back-48bn.onrender.com/api/url/clicks?email=${email}`,
-  //       {
-  //         method: "GET",
-  //       }
-  //     );
-
-  //     if (!response.ok) throw new Error("Error fetching clicks data");
-  //     const data = await response.json();
-  //     setClicks(data.totalClicks);
-  //     setDateWiseClicks(data.dailyClicks);
-  //     setDeviceWiseClicks(data.totalDeviceClicks);
-  //   } catch (error) {
-  //     console.error("Error fetching clicks data:", error);
-  //   }
-  // };
 
   const fetchClicksData = async (email) => {
     try {
