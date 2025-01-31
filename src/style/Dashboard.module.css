@@ -653,7 +653,6 @@ table {
   width: 100%; /* Ensures it maintains full width */
   min-width: 800px; /* Prevents table from becoming too small */
   border-collapse: collapse;
-  border-radius: 8px;
 }
 
 /* Ensures cells have proper spacing */
