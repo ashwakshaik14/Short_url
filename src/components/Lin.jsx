@@ -363,7 +363,7 @@ function Lin() {
           <td style={{ color: getStatus(link.expirationDate).color }}>
             {getStatus(link.expirationDate).status}
           </td>
-          <td>
+          <td className={style.edit}>
             <button onClick={() => handleEdit(link)}>
               <FaPen />
             </button>
