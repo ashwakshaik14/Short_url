@@ -364,10 +364,10 @@ function Lin() {
             {getStatus(link.expirationDate).status}
           </td>
           <td className={style.edit}>
-            <button onClick={() => handleEdit(link)} style={{backgroundColor:'none'}}>
+            <button onClick={() => handleEdit(link)}>
               <FaPen />
             </button>
-            <button onClick={() => handleOpenModal(link)} style={{backgroundColor:'none'}}>
+            <button onClick={() => handleOpenModal(link)}>
               <RiDeleteBin6Line />
             </button>
           </td>
