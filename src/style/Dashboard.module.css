@@ -240,6 +240,7 @@ a {
 }
 
 table {
+  border: none;
   border-radius: 8px;
   table-layout: fixed; /* Fix the layout to prevent shrinkage */
 }

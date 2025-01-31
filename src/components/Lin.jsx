@@ -327,17 +327,22 @@ function Lin() {
           <div className={style.linksContainer}>
           <div className={style.tableWrapper}>
   <table className={style.table}>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Original Link</th>
-        <th>Short Link</th>
-        <th>Remarks</th>
-        <th>Clicks</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+  <thead>
+  <tr>
+    <th onClick={() => sortData("createdAt")} style={{ cursor: "pointer" }}>
+      Date {sortConfig.key === "createdAt" ? (sortConfig.direction === "ascending" ? "↑" : "↓") : ""}
+    </th>
+    <th>Original Link</th>
+    <th>Short Link</th>
+    <th>Remarks</th>
+    <th>Clicks</th>
+    <th onClick={() => sortData("status")} style={{ cursor: "pointer" }}>
+      Status {sortConfig.key === "status" ? (sortConfig.direction === "ascending" ? "↑" : "↓") : ""}
+    </th>
+    <th>Action</th>
+  </tr>
+</thead>
+
     <tbody>
       {filteredLinks.map((link) => (
         <tr key={link._id}>
