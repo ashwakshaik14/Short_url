@@ -240,7 +240,6 @@ a {
 }
 
 table {
-  border: 1px solid;
   border-radius: 8px;
   table-layout: fixed; /* Fix the layout to prevent shrinkage */
 }
@@ -642,7 +641,6 @@ table{
   width: 100%; /* Ensures it spans full width */
   overflow-x: auto; /* Enables horizontal scrolling */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
-  border: 1px solid #ddd; /* Optional: for better visibility */
 }
 
 /* Prevents table from shrinking */
